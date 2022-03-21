@@ -4,6 +4,8 @@ import db from '.';
 
 class Clubs extends Model {
   // public <campo>!: <tipo>;
+  public id: number;
+  public club_name: string;
 }
 
 Clubs.init({
@@ -15,7 +17,7 @@ Clubs.init({
   // ... Outras configs
   underscored: true,
   sequelize: db,
-  modelName: 'Clubs',
+  modelName: 'clubs',
   timestamps: false,
 });
 

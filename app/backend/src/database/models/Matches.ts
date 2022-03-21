@@ -9,22 +9,22 @@ class Matches extends Model {
   public home_team_goals: number;
   public away_team: number;
   public away_team_goals: number;
-  public in_progress: boolean;
+  public in_progress: number;
 } 
 
 Matches.init({
   // ... Campos
   id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
-  home_team: DataTypes.NUMBER,
-  home_team_goals: DataTypes.NUMBER,
-  away_team: DataTypes.NUMBER,
-  away_team_goals: DataTypes.NUMBER,
-  in_progress: DataTypes.BOOLEAN,
+  home_team: { type: DataTypes.INTEGER, key: 'home_team', },
+  home_team_goals: { type: DataTypes.INTEGER },
+  away_team: { type: DataTypes.INTEGER, key: 'away_team' },
+  away_team_goals: { type: DataTypes.INTEGER },
+  in_progress: { type: DataTypes.INTEGER },
 }, {
   // ... Outras configs
   underscored: true,
   sequelize: db,
-  modelName: 'matches',
+  modelName: 'matchs',
   timestamps: false,
 });
 
