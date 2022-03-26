@@ -28,6 +28,9 @@ Matches.init({
   timestamps: false,
 });
 
+// 1 matches vários clubes
+// 
+
 /**
   * `Workaround` para aplicar as associations em TS: 
   * Associations 1:N devem ficar em uma das instâncias de modelo

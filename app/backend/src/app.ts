@@ -1,16 +1,21 @@
+import 'reflect-metadata'
 import * as express from 'express';
+import userRoute from './routes/userRoute';
+import  * as cors from 'cors';
+import { error } from './msc/middlewares';
 
 class App {
   public app: express.Express;
   // ...
-
+  
   constructor() {
     // ...
     this.app = express();
     this.config();
+    this.Router();
     // ...
   }
-
+  
   private config():void {
     const accessControl: express.RequestHandler = (_req, res, next) => {
       res.header('Access-Control-Allow-Origin', '*');
@@ -20,15 +25,22 @@ class App {
     };
 
     this.app.use(accessControl);
+    this.app.use(express.json());
+    this.app.use(cors());
     // ...
   }
 
+  private Router(): void {
+    this.app.use('/login', userRoute);  
+    this.app.use(error);
+  }
   // ...
   public start(PORT: string | number):void {
     app.listen(PORT, () => {
       console.log(`escutando na porta ${PORT}!`)
     })
   }
+
 }
 
 export { App };

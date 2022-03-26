@@ -1,0 +1,7 @@
+@types/joi
+@types/bcryptjs
+typedi
+joi
+bcryptjs
+reflect-metadata
+express-async-errors
