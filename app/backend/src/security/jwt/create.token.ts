@@ -1,7 +1,7 @@
 import * as jwt from 'jsonwebtoken';
 import * as fs from 'fs';
 
-const secret = fs.readFileSync('jwt.evaluation.key', 'utf8');
+const secret = fs.readFileSync('jwt.evaluation.key', 'utf-8').trim();
 
 const token = (infoUser: any) => {
   console.log(infoUser);

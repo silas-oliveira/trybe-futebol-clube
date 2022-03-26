@@ -1,5 +1,4 @@
 import { NextFunction, Request, Response } from "express"
-import { ErrorLogin } from '../../enum';
 
 export const error = (err: Error, _req: Request, res: Response, next: NextFunction) => {
   const { name, message, details: d } = err as any
@@ -15,14 +14,11 @@ export const error = (err: Error, _req: Request, res: Response, next: NextFuncti
     case 'ReferenceError':
       res.status(409).json({ message })
       break
-    case ErrorLogin.AllFieldsMustBeFilled:
+    case 'EmailOrPasswordError':
       res.status(401).json({ message })
       break
-    case ErrorLogin.AllFieldsMustBeFilled:
-      res.status(401).json({ message })
-      break
-      default:
-      res.status(401).json({ message })
+    default:
+      return res.status(401).json({ message })
   }
 
   next()

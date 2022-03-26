@@ -2,7 +2,7 @@ import { User } from "../../interfaces";
 import { Service } from "typedi";
 import Users from "../../database/models/Users";
 import { compareSync } from "bcryptjs";
-import { throwEmailOrPasswordError, throwReferenceError } from "./_services";
+import { throwEmailOrPasswordError } from "./_services";
 
 @Service()
 export class UserService {
@@ -16,22 +16,21 @@ export class UserService {
     if(compareSync(password, hash) === true) {
       this.correctPassword = true;
     } else {
-      throwEmailOrPasswordError('Incorrect email or password');
+      throwEmailOrPasswordError();
     }
   };
 
-  async login(email: string, password: string): Promise<User | null>  {
+  async login(email: string, password: string): Promise<User | undefined>  {
     const user = await Users.findOne({ where: { email }, raw: true });
-    console.log('user>>><<<>', user);
-    if (user === null) return throwEmailOrPasswordError('Incorrect email or password');
-    if (!user) return null;
     
-    this.comparePassword(password, user.password);
-  
-    if (user !== null) {
-      const { password, ...userInfo } = user;
+    if (user !== null ) {
+      const { password: pass, ...userInfo } = user;
+      this.comparePassword(password, pass);
+
+      if (user.email === undefined) throwEmailOrPasswordError();
       return userInfo;
+    } else {
+      throwEmailOrPasswordError();
     }
-    return user;
   }
 }
