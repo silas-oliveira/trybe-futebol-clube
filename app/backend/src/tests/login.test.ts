@@ -33,12 +33,12 @@ describe('Seu teste', () => {
     expect(chaiHttpResponse).to.have.status(200);
   });
 
-  it('Espera que tenha o body possua as propriedades "user" e "token":', async () => {
+  it('Espera que tenha o body possua as propriedades "user" e "token"', async () => {
     expect(chaiHttpResponse.body).to.have.property('user');
     expect(chaiHttpResponse.body).to.have.property('token');
   });
 
-  it('Espera que o retorno de "user" seja igual ao esperado:', async () => {
+  it('Espera que o retorno de "user" seja igual ao esperado', async () => {
     expect(chaiHttpResponse.body.user).to.deep.equal(USER_RETURN);
   });
   

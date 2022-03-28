@@ -20,4 +20,12 @@ export class UserController {
     const authorization = token(email);
     return { user :{ ...result }, token: authorization };
   }
+
+  async get(headers: any) {
+    const { authorization } = headers;
+    // console.log('authorization', authorization);
+    
+    const result = await this.userService.get(authorization);
+    return result;
+  }
 }

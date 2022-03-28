@@ -3,6 +3,8 @@ import { Service } from "typedi";
 import Users from "../../database/models/Users";
 import { compareSync } from "bcryptjs";
 import { throwEmailOrPasswordError } from "./_services";
+import decodeToken from "../../security/jwt/decode.token";
+import { JwtPayload } from "jsonwebtoken";
 
 @Service()
 export class UserService {
@@ -13,17 +15,17 @@ export class UserService {
 
   private comparePassword = (password: string, hash: string) => {
     console.log(compareSync(password, hash));
-    if(compareSync(password, hash) === true) {
+    if (compareSync(password, hash) === true) {
       this.correctPassword = true;
     } else {
       throwEmailOrPasswordError();
     }
   };
 
-  async login(email: string, password: string): Promise<User | undefined>  {
+  async login(email: string, password: string): Promise<User | undefined> {
     const user = await Users.findOne({ where: { email }, raw: true });
-    
-    if (user !== null ) {
+
+    if (user !== null) {
       const { password: pass, ...userInfo } = user;
       this.comparePassword(password, pass);
 
@@ -32,5 +34,19 @@ export class UserService {
     } else {
       throwEmailOrPasswordError();
     }
+  }
+
+  get(authorization: any) {
+    console.log("func", decodeToken(authorization));
+    const decode = decodeToken(authorization);
+
+    if (decode !== undefined || decode !== null) {
+      const { data } = decode as JwtPayload;
+      const lowerCase = data.toLowerCase();
+      
+      if (lowerCase.includes('user')) return 'user';
+      if (lowerCase.includes('admin')) return 'admin';
+    }
+    return undefined;
   }
 }

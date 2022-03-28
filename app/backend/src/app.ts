@@ -31,7 +31,8 @@ class App {
   }
 
   private Router(): void {
-    this.app.use('/login', userRoute);  
+    this.app.use('/login', userRoute);
+    this.app.use('/login/validate', userRoute);
     this.app.use(error);
   }
   // ...
