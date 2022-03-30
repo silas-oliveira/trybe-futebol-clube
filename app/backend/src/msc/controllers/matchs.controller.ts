@@ -1,3 +1,4 @@
+import decodeToken from "../../security/jwt/decode.token";
 import { Service } from "typedi";
 import { MatchsService } from "../services/matchs.service";
 
@@ -13,7 +14,9 @@ export class MatchsController {
       return searchInfo;
     }
     
-    async create(body: any) {
+    async create(body: any, headers: any) {
+      const { authorization } = headers;
+      decodeToken(authorization);
       const match = await this.matchsService.create(body);
       return match;
     }

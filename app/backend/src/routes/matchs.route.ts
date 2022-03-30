@@ -16,7 +16,7 @@ matchsRoute.get("/", async (req, res, next) => {
 
 matchsRoute.post("/", async (req, res, next) => {
   try {
-    const result = await matchsController.create(req.body);
+    const result = await matchsController.create(req.body, req.headers);
     res.status(200).json(result);
   } catch (error) {
     next(error);
