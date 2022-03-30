@@ -14,7 +14,6 @@ export class UserService {
   }
 
   private comparePassword = (password: string, hash: string) => {
-    console.log(compareSync(password, hash));
     if (compareSync(password, hash) === true) {
       this.correctPassword = true;
     } else {
@@ -37,7 +36,6 @@ export class UserService {
   }
 
   get(authorization: any) {
-    console.log("func", decodeToken(authorization));
     const decode = decodeToken(authorization);
 
     if (decode !== undefined || decode !== null) {

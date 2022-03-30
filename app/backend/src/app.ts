@@ -1,6 +1,8 @@
 import 'reflect-metadata'
 import * as express from 'express';
 import userRoute from './routes/userRoute';
+import clubsRoute from './routes/clubs.route';
+import matchsRoute from './routes/matchs.route';
 import  * as cors from 'cors';
 import { error } from './msc/middlewares';
 
@@ -33,6 +35,9 @@ class App {
   private Router(): void {
     this.app.use('/login', userRoute);
     this.app.use('/login/validate', userRoute);
+    this.app.use('clubs/:id', clubsRoute);
+    this.app.use('/clubs', clubsRoute);
+    this.app.use('/matchs', matchsRoute)
     this.app.use(error);
   }
   // ...
