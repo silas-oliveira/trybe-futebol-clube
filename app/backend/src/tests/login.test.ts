@@ -18,7 +18,7 @@ const USER_RETURN =	{
   email: "user@user.com"
 }
 
-describe('Seu teste', () => {
+describe('Login test', () => {
 
   let chaiHttpResponse: Response;
   

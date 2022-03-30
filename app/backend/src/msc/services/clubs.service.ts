@@ -9,13 +9,14 @@ export class ClubsService {
   async get() {
     const searchInfo = await Clubs.findAll({ raw: true });
     return searchInfo;
- 
   }
+  
   async getById(_authorization: any, id: number) {
-    if (id) {
-      const searchInfo = await Clubs.findOne({ where: { id }, raw: true });
-      return searchInfo;
+    const searchInfo = await Clubs.findOne({ where: { id }, raw: true });
+    if (searchInfo === null) {
+      return throwNotFoundError();
     }
-    return throwNotFoundError;
+    
+    return searchInfo;
   }
 }

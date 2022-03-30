@@ -12,5 +12,10 @@ export class MatchsController {
       const searchInfo = await this.matchsService.get(inProgress);
       return searchInfo;
     }
+    
+    async create(body: any) {
+      const match = await this.matchsService.create(body);
+      return match;
+    }
   
 }

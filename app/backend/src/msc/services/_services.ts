@@ -7,4 +7,6 @@ const throwError = (name: string, defaultMessage = '') => (message: string = def
 export const throwNotFoundError = throwError('NotFoundError', 'not found');
 export const throwReferenceError = throwError('ReferenceError')
 export const throwEmailOrPasswordError = throwError('EmailOrPasswordError', 'Incorrect email or password');
+export const throwIdHomeTeamOrAwayTeamNotFound = throwError('throwIdHomeTeamOrAwayTeamNotFound', 'id incorrect');
+
 
