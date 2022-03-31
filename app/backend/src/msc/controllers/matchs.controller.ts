@@ -21,18 +21,13 @@ export class MatchsController {
       return result;
     }
 
-    async update(id: any) {
-      const result = await this.matchsService.update(id);
+    async finishMatch(id: any) {
+      const result = await this.matchsService.finishMatch(id);
       return result;
     }
 
-    async editInProgress(id: any, body: any) {
-      const result = await this.matchsService.editInProgress(id, body);
-      return result;
-    }
-
-    async editByFinished(id: any) {
-      const result = await this.matchsService.editByFinished(id);
+    async updateById(id: any, body: any) {
+      const result = await this.matchsService.updateById(id, body);
       return result;
     }
   

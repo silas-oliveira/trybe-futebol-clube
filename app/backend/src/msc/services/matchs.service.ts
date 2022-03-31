@@ -55,25 +55,15 @@ export class MatchsService {
     throwIdHomeTeamOrAwayTeamNotFound();
   }
 
-  async update(id: any) {
-    const result = await Matches.update(
-      { inProgress: false },
-      { where: { id } }
-    );
-    console.log("result", result);
-    return result;
-  }
-
-  async editByFinished(id: any) {
-    console.log("passei aq");
+  async finishMatch(id: any) {
     const result = await Matches.update(
       { inProgress: false },
       { where: { id } }
     );
     return result;
   }
-
-  async editInProgress(id: any, body: any) {
+  
+  async updateById(id: any, body: any) {
     const result = await Matches.update(
       { homeTeamGoals: body.homeTeamGoals, awayTeamGoals: body.awayTeamGoals },
       { where: { id } }
