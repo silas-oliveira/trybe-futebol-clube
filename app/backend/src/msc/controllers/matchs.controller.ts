@@ -17,8 +17,8 @@ export class MatchsController {
     async create(body: any, headers: any) {
       const { authorization } = headers;
       decodeToken(authorization);
-      const match = await this.matchsService.create(body);
-      return match;
+      const result = await this.matchsService.create(body);
+      return result;
     }
 
     async update(id: any) {
@@ -26,9 +26,14 @@ export class MatchsController {
       return result;
     }
 
-    async edit(id: any, body: any) {
-      const match = await this.matchsService.edit(id, body);
-      return match;
+    async editInProgress(id: any, body: any) {
+      const result = await this.matchsService.editInProgress(id, body);
+      return result;
+    }
+
+    async editByFinished(id: any) {
+      const result = await this.matchsService.editByFinished(id);
+      return result;
     }
   
 }

@@ -34,11 +34,11 @@ class App {
 
   private Router(): void {
     this.app.use('/login', userRoute);
-    this.app.use('/login/validate', userRoute);
-    this.app.use('clubs/:id', clubsRoute);
+    // this.app.use('/login/validate', userRoute);
+    // this.app.use('clubs/:id', clubsRoute);
     this.app.use('/clubs', clubsRoute);
-    this.app.use('/matchs/:id', matchsRoute);
-    this.app.use('/matchs/:id/finish', matchsRoute)
+    // this.app.use('/matchs/:id', matchsRoute);
+    // this.app.use('/matchs/:id/finish', matchsRoute)
     this.app.use('/matchs', matchsRoute)
     this.app.use(error);
   }

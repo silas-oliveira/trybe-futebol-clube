@@ -1,7 +1,10 @@
 import Clubs from "../../database/models/Clubs";
 import { Service } from "typedi";
 import Matches from "../../database/models/Matches";
-import { throwEqualIdsError, throwIdHomeTeamOrAwayTeamNotFound } from "./_services";
+import {
+  throwEqualIdsError,
+  throwIdHomeTeamOrAwayTeamNotFound,
+} from "./_services";
 
 @Service()
 export class MatchsService {
@@ -61,15 +64,16 @@ export class MatchsService {
     return result;
   }
 
-  async edit(id: any, body: any) {
-    if (Object.values(body).length <= 0) {
-      console.log("passei aq");
-      const result = await Matches.update(
-        { inProgress: false },
-        { where: { id } }
-      );
-      return result;
-    }
+  async editByFinished(id: any) {
+    console.log("passei aq");
+    const result = await Matches.update(
+      { inProgress: false },
+      { where: { id } }
+    );
+    return result;
+  }
+
+  async editInProgress(id: any, body: any) {
     const result = await Matches.update(
       { homeTeamGoals: body.homeTeamGoals, awayTeamGoals: body.awayTeamGoals },
       { where: { id } }
