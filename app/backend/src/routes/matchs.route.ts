@@ -23,4 +23,13 @@ matchsRoute.post("/", async (req, res, next) => {
   }
 })
 
+matchsRoute.patch("/:id/finish", async (req, res, next) => {
+  try {
+    const result = await matchsController.update(req.params.id);
+    res.status(200).json(result);
+  } catch (error) {
+    next(error)
+  }
+})
+
 export default matchsRoute;

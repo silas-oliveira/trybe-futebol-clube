@@ -47,4 +47,10 @@ export class MatchsService {
     } 
     throwIdHomeTeamOrAwayTeamNotFound();
   }
+
+  async update(id: any) {
+    const result = await Matches.update({ inProgress: false }, { where: { id } });
+    console.log('result', result);
+    return result;
+  }
 }
