@@ -1,7 +1,7 @@
 import Clubs from "../../database/models/Clubs";
 import { Service } from "typedi";
 import Matches from "../../database/models/Matches";
-import { throwIdHomeTeamOrAwayTeamNotFound } from "./_services";
+import { throwEqualIdsError, throwIdHomeTeamOrAwayTeamNotFound } from "./_services";
 
 @Service()
 export class MatchsService {
@@ -36,6 +36,10 @@ export class MatchsService {
   async create(body: any) {
     const idTeamHome = body.homeTeam;
     const idAwayTeam = body.awayTeam;
+
+    if (idTeamHome === idAwayTeam) {
+      throwEqualIdsError();
+    }
 
     const teams = await Clubs.findAll({ raw: true });
 
