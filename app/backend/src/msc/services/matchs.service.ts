@@ -5,7 +5,7 @@ import { throwIdHomeTeamOrAwayTeamNotFound } from "./_services";
 
 @Service()
 export class MatchsService {
-  constructor() { }
+  constructor() {}
 
   private progress(matchStatus: any) {
     if (matchStatus === "true") return 1;
@@ -44,13 +44,32 @@ export class MatchsService {
 
     if (resultHome && resultAway) {
       return Matches.create(body);
-    } 
+    }
     throwIdHomeTeamOrAwayTeamNotFound();
   }
 
   async update(id: any) {
-    const result = await Matches.update({ inProgress: false }, { where: { id } });
-    console.log('result', result);
+    const result = await Matches.update(
+      { inProgress: false },
+      { where: { id } }
+    );
+    console.log("result", result);
+    return result;
+  }
+
+  async edit(id: any, body: any) {
+    if (Object.values(body).length <= 0) {
+      console.log("passei aq");
+      const result = await Matches.update(
+        { inProgress: false },
+        { where: { id } }
+      );
+      return result;
+    }
+    const result = await Matches.update(
+      { homeTeamGoals: body.homeTeamGoals, awayTeamGoals: body.awayTeamGoals },
+      { where: { id } }
+    );
     return result;
   }
 }

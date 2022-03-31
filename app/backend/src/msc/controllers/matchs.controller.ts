@@ -25,5 +25,10 @@ export class MatchsController {
       const result = await this.matchsService.update(id);
       return result;
     }
+
+    async edit(id: any, body: any) {
+      const match = await this.matchsService.edit(id, body);
+      return match;
+    }
   
 }
