@@ -24,8 +24,8 @@ export type ILeaderBoard = {
   totalLosses: number;
   goalsFavor: number;
   goalsOwn: number;
-  goalsBalance: number;
-  efficiency: number | void | any;
+  goalsBalance?: number;
+  efficiency?: number | void | any;
 }
 
 // export type Entity = Indexable & {
