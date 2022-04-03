@@ -58,15 +58,17 @@ export class LeaderboardService {
           }
         }
       });
-      const balance = goalsFavor - goalsOwn;
+      const goalsBalance = goalsFavor - goalsOwn;
       const efficiency = +(totalPoints / (totalGames * 3) * 100).toFixed(2);
-      const result = { name: club.clubName, totalPoints, totalGames, totalVictories, totalDraws, totalLosses, goalsFavor, goalsOwn, balance, efficiency };
+      const result = { name: club.clubName, totalPoints, totalGames, totalVictories, totalDraws, totalLosses, goalsFavor, goalsOwn, goalsBalance, efficiency };
       return result;
     });
     
     const orderingOfPoints = createLeaderBoard.sort((a: any, b: any): any => {
-      if (a.totalPoints < b.totalPoints) return 1;
-      if (a.totalPoints > b.totalPoints) return -1;
+      // if (a.totalPoints < b.totalPoints) return 1;
+      // if (a.totalPoints > b.totalPoints) return -1;
+      if (b.totalPoints !== a.totalPoints) return b.totalPoints - a.totalPoints;
+      
       if (a.totalVictories < b.totalVictories) return 1;
       if (a.totalVictories > b.totalVictories) return -1;
       if (a.goalsBalance < b.goalsBalance) return 1;
