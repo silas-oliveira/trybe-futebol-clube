@@ -5,6 +5,7 @@ import clubsRoute from './routes/clubs.route';
 import matchsRoute from './routes/matchs.route';
 import  * as cors from 'cors';
 import { error } from './msc/middlewares';
+import leaderboardRoute from './routes/leaderboard';
 
 class App {
   public app: express.Express;
@@ -37,9 +38,8 @@ class App {
     this.app.use('/login/validate', userRoute);
     this.app.use('clubs/:id', clubsRoute);
     this.app.use('/clubs', clubsRoute);
-    // this.app.use('/matchs/:id', matchsRoute);
-    // this.app.use('/matchs/:id/finish', matchsRoute)
     this.app.use('/matchs', matchsRoute)
+    this.app.use('/leaderboard/home', leaderboardRoute);
     this.app.use(error);
   }
   // ...

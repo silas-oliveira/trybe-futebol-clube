@@ -15,7 +15,7 @@ export class MatchsService {
     return 0;
   }
 
-  async get(inProgress: any) {
+  async get(inProgress?: any) {
     if (inProgress) {
       const searchInfo = await Matches.findAll({
         include: [
@@ -32,6 +32,7 @@ export class MatchsService {
           { model: Clubs, as: "awayClub", attributes: { exclude: ["id"] } },
         ],
       });
+      console.log('SAI DAQ', searchInfo);
       return searchInfo;
     }
   }

@@ -1,5 +1,6 @@
 import { DataTypes, Model } from 'sequelize';
 import db from '.';
+import Clubs from './Clubs';
 
 class Matches extends Model {
   public id: number;
@@ -8,6 +9,9 @@ class Matches extends Model {
   public awayTeam: number;
   public awayTeamGoals: number;
   public inProgress: number;
+  public homeClub?: Clubs;
+  public awayClub?: Clubs;
+
 } 
 
 Matches.init({
