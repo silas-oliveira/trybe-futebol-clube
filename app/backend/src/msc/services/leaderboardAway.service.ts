@@ -29,23 +29,23 @@ export class LeaderboardAwayService {
       let goalsOwn = 0;
       matchs.forEach((match) => {
         if (club.id === match.awayTeam) {
-          if (match.homeTeamGoals > match.awayTeamGoals) {
+          if (match.awayTeamGoals > match.homeTeamGoals) {
             totalPoints += 3;
             totalGames += 1;
             totalVictories += 1;
-            goalsFavor += match.homeTeamGoals;
-            goalsOwn += match.awayTeamGoals;
-          } else if (match.homeTeamGoals < match.awayTeamGoals) {
+            goalsFavor += match.awayTeamGoals;
+            goalsOwn += match.homeTeamGoals;
+          } else if (match.awayTeamGoals < match.homeTeamGoals) {
             totalGames += 1;
             totalLosses += 1;
-            goalsFavor += match.homeTeamGoals;
-            goalsOwn += match.awayTeamGoals;
+            goalsFavor += match.awayTeamGoals;
+            goalsOwn += match.homeTeamGoals;
           } else {
             totalDraws += 1;
             totalPoints += 1;
             totalGames += 1;
-            goalsFavor += match.homeTeamGoals;
-            goalsOwn += match.awayTeamGoals;
+            goalsFavor += match.awayTeamGoals;
+            goalsOwn += match.homeTeamGoals;
           }
         }
       });
