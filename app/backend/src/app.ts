@@ -7,6 +7,7 @@ import  * as cors from 'cors';
 import { error } from './msc/middlewares';
 import leaderboardRoute from './routes/leaderboard';
 import leaderboardAwayRoute from './routes/leaderboardAway';
+import leaderboardGeneralRoute from './routes/leaderboardGeneral';
 
 class App {
   public app: express.Express;
@@ -42,6 +43,7 @@ class App {
     this.app.use('/matchs', matchsRoute)
     this.app.use('/leaderboard/home', leaderboardRoute);
     this.app.use('/leaderboard/away', leaderboardAwayRoute);
+    this.app.use('/leaderboard', leaderboardGeneralRoute);
     this.app.use(error);
   }
   // ...
